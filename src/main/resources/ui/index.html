@@ -1,0 +1,56 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>What else ?</h1>
+    <button onclick="register('client1')">register client1</button>
+    <button onclick="register('client2')">register client2</button>
+    <button onclick="send()">send</button>
+
+    <script src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+    <script src="vertxbus-2.1.js"></script>
+    <script>
+
+        var eb = new vertx.EventBus("/bus");
+        eb.onopen = function() {
+            console.log("Bus opened");
+        }
+
+        var register = function(address) {
+            eb.registerHandler(address, function(msg) {
+                console.log('Receive message = ' + msg);
+            });
+        }
+
+        var send = function() {
+            eb.send('apps.myapp', 'mon super message');
+        }
+
+//        var sock = new SockJS('/bus');
+//
+//        sock.onopen = function() {
+//           console.log('sock opened');
+//            sock.send('mon super message');
+//        }
+//
+//        sock.onerror = function() {
+//            console.log('sock error');
+//        }
+//
+//        sock.onclose = function() {
+//            console.log('sock closed')
+//        }
+//
+//        sock.onmessage = function(msg) {
+//            console.log(msg.data);
+//        }
+//
+//        var send = function() {
+//            sock.send('mon super message');
+//        }
+
+    </script>
+</body>
+</html>

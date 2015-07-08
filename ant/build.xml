@@ -1,0 +1,19 @@
+<project default="run-test">
+
+    <property name="vertx" value="C:\Users\RV\Dev\as\vert.x-2.1.5\bin\vertx"/>
+
+    <target name="link-test">
+        <exec dir="C:\Users\RV\Dev\workspace\perso\vrcloud-git"
+              executable="cmd">
+            <arg line="/c ${vertx} create-module-link net.vanron~vrcloud-git~0.1"></arg>
+        </exec>
+    </target>
+
+    <target name="run-test" depends="link-test">
+        <exec dir="C:\Users\RV\Dev\workspace\perso\vrcloud-git\target\classes"
+              executable="cmd">
+            <arg line="/c ${vertx} runmod net.vanron~vrcloud-git~0.1"></arg>
+        </exec>
+    </target>
+
+</project>

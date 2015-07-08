@@ -1,0 +1,4 @@
+{
+  "main":"net.vanron.StarterVerticle",
+  "auto-redeploy": true
+}
